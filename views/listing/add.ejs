@@ -1,0 +1,258 @@
+
+<html>
+<head>
+    <% include ../essentials.ejs %>
+</head>
+<body>
+<div id="page-loader">
+    <div class="preloader preloader--xl preloader--light"> <svg viewBox="25 25 50 50">
+            <circle cx="50" cy="50" r="20" />
+        </svg> </div>
+</div>
+<!-- Header -->
+<% include ../header.ejs %>
+<section id="main">
+    <% include ../sidebar.ejs %>
+    <section id="content">
+        <div class="content__header">
+            <h2><a href="/dashboard">Home</a>
+                <i class="zmdi zmdi-chevron-right"></i> <a href="/listing/list">Listings</a></h2>
+        </div>
+    </section>
+    <div class="card">
+    <div class="card__header">
+        <h2>Listing Information <small>Use the form below to edit the information associated with a specific listing.</small></h2>
+    </div>
+    <form method="Post" id="editListing" action="/listing/addListing">
+        <input type="hidden" name="listingId" value="">
+        <div class="card__body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Title *</label>
+                        <input type="text" class="form-control input-mask" name="title" value="" placeholder="eg: Beautiful estate on a quiet court">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>List Date *</label>
+                        <input type="text" class="form-control input-mask" name="List_Date" value="" placeholder="eg: Jan 1, 2018">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>MLS #</label>
+                        <input type="text" class="form-control input-mask" name="mls_id" value="" placeholder="eg: W123456">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control input-mask" name="address" value="" placeholder="eg: 123 Main St.">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" class="form-control input-mask" name="city" value="" placeholder="eg: Brampton">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Classification</label>
+                        <select class="select2" name="class_id">
+                            <% for(var i=0;i<listingtypes.length;i++){ %>
+                            <option value ="<%= listingtypes[i].class_id%>" ><%= listingtypes[i].name%></option>
+                            <%}%>
+                        </select>
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Bedrooms</label>
+                        <input type="text" class="form-control input-mask" name="bedrooms" value="" placeholder="eg: 5">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Bathrooms</label>
+                        <input type="text" class="form-control input-mask" name="bathrooms" value="" placeholder="eg: 3">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Basement</label>
+                        <select class="select2" name="basement_id">
+                            <% for(var i=0;i<basementtypes.length;i++){ %>
+                            <option value ="<%= basementtypes[i].basement_id%>" ><%= basementtypes[i].basement_label%></option>
+                            <%}%>
+                        </select>
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Lot Width (ft)</label>
+                        <input type="text" class="form-control input-mask" name="lot_width" value="" placeholder="eg: 50">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Lot Length (ft)</label>
+                        <input type="text" class="form-control input-mask" name="lot_lenght" value="" placeholder="eg: 150">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select class="select2" name="type_id">
+                            <% for(var i=0;i<propertypes.length;i++){ %>
+                            <option value ="<%= propertypes[i].type_id%>" ><%= propertypes[i].type_name%></option>
+                            <%}%>
+
+                        </select>
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>List Price</label>
+                        <input type="text" class="form-control input-mask" name="price" value="" placeholder="eg: $199,000">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Annual Taxes</label>
+                        <input type="text" class="form-control input-mask" name="taxes" value="" placeholder="eg: $4500">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Virtual Tour Link</label>
+                        <input type="text" class="form-control input-mask" name="virtual_tour" value="" placeholder="eg: http://www.google.com">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="select2" name="list_status">
+                            <option value="0" >For
+                                Sale</option>
+                            <option value="1" >Sold</option>
+                            <option value="2" >For Lease</option>
+                            <option value="4" >Leased</option>
+                            <option value="3" >Coming Soon</option>
+                        </select>
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="card__body">
+                    <p>Description *</p>
+                    <div class="form-group">
+                        <textarea class="form-control" name="description" placeholder="Enter a description of the listing here..."></textarea>
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Open House Date 1</label>
+                        <input type="text" class="form-control input-mask" name="open_house" value="" placeholder="eg: Jan 1, 2018">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Start Hour</label>
+                        <select class="select2" name="open_house_start">
+                            <option value="1" selected>1</option>
+                            <% for(var i=2;i<=12;i++){%>
+                            <option value="<%= i %>" ><%= i %></option>
+                            <%}%>
+                        </select>
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>End Hour</label>
+                        <select class="select2" name="open_house_end">
+                            <option value="1" selected>1</option>
+                            <% for(var i=2;i<=12;i++){%>
+                            <option value="<%= i %>" ><%= i %></option>
+                            <%}%>
+                        </select>
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Open House Date 2</label>
+                        <input type="text" class="form-control input-mask" name="open_house2" value="" placeholder="eg: Jan 1, 2018">
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Start Hour</label>
+                        <select class="select2" name="open_house_start2">
+                            <option value="1" selected>1</option>
+                            <% for(var i=2;i<=12;i++){%>
+                            <option value="<%= i %>" ><%= i %></option>
+                            <%}%>
+                        </select>
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>End Hour</label>
+                        <select class="select2" name="open_house_end2">
+                            <option value="1" selected>1</option>
+                            <% for(var i=2;i<=12;i++){%>
+                            <option value="<%= i %>" ><%= i %></option>
+                            <%}%>
+                        </select>
+                        <i class="form-group__bar"></i> </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="card__footer">
+                    <button class="btn btn-default" onclick="$('#page-loader').show();document.getElementById('editListing').submit()">Save</button>
+                    <button type="button" class="btn btn-link" onclick="javascript:location='/listing/list';">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+</section>
+
+
+
+</body>
+</html>

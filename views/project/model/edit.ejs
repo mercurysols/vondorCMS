@@ -1,0 +1,114 @@
+
+<html>
+<head>
+    <% include ../../essentials.ejs %>
+</head>
+<body>
+<div id="page-loader">
+    <div class="preloader preloader--xl preloader--light"> <svg viewBox="25 25 50 50">
+            <circle cx="50" cy="50" r="20" />
+        </svg> </div>
+</div>
+
+
+
+<!-- Header -->
+<% include ../../header.ejs %>
+<section id="main">
+    <% include ../../sidebar.ejs %>
+
+    <section id="content">
+
+        <div class="content__header">
+
+
+            <h2><A href="/dashboard">Home</A>
+
+
+                <i class="zmdi zmdi-chevron-right"></i> <A href="/project/list">Projects</A>
+                <% for(var i=0;i<projectList.length;i++){ %>
+                <% if(projectList[i].projectId=== data.projectId){%>
+                <i class="zmdi zmdi-chevron-right"></i> <A href="/project/edit/<%=  data.projectId %>"><%=projectList[i].projectName%></A>
+                <%}}%>
+                <i class="zmdi zmdi-chevron-right"></i> <A href="/model/list?Id=<%= data.projectId %>&success=0">Models</A>
+                <i class="zmdi zmdi-chevron-right"></i> <A href="#"><%= data.modelName %></A>
+            </h2>
+
+        </div>
+    </section>
+
+        <div class="card">
+            <div class="card__header">
+                <h2>Model Information <small>Use the form below to edit the information associated with a specific model.</small></h2>
+
+                <button class="btn btn-default btn--icon pull-right" onclick="javascript:location='/floorplan/photo/<%= data.modelId %>'"><i class="zmdi zmdi-copy"></i></button>
+
+            </div>
+            <form method="Post" id="editModel" action="/model/edit">
+                <input type="hidden" name="modelId" value="<%= data.modelId%>">
+                <input type="hidden" name="modelDescription" value="<%= data.modelDescription %>" />
+                <div class="card__body">
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Model Name</label>
+                                <input type="text" class="form-control input-mask" name="modelName" value="<%= data.modelName %>" placeholder="eg: The Pad">
+                                <i class="form-group__bar"></i> </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Project</label>
+                                <select class="select2" name="projectId">
+                                    <% for(var i=0;i<projectList.length;i++){ %>
+                                    <% if(projectList[i].projectId=== data.projectId){%>
+                                    <option value="<%= projectList[i].projectId %>" selected ><%= projectList[i].projectName %></option>
+                                    <% }else {%>
+
+                                    <option value="<%= projectList[i].projectId %>" ><%= projectList[i].projectName %></option>
+                                    <% }%>
+                                    <% } %>
+                                </select>
+                                <i class="form-group__bar"></i> </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Size (SqFt)</label>
+                                <input type="text" class="form-control input-mask" name="modelSqFt" value="<%= data.modelSqFt %>" placeholder="eg: 550">
+                                <i class="form-group__bar"></i> </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Starting Price</label>
+                                <input type="text" class="form-control input-mask" name="modelPrice" value="<%= data.modelPrice %>" placeholder="eg: $199,000">
+                                <i class="form-group__bar"></i> </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Bedrooms</label>
+                                <input type="text" class="form-control input-mask" name="modelBeds" value="<%= data.modelBeds %>" placeholder="eg: 2">
+                                <i class="form-group__bar"></i> </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Bathrooms</label>
+                                <input type="text" class="form-control input-mask" name="modelBaths" value="<%= data.modelBaths %>" placeholder="eg: 1.5">
+                                <i class="form-group__bar"></i> </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Floors</label>
+                                <input type="text" class="form-control input-mask" name="modelFloors" value="<%= data.modelFloors %>" placeholder="eg: 5,6,7,10,20">
+                                <i class="form-group__bar"></i> </div>
+                        </div>
+                        <div class="card__footer">
+                            <button class="btn btn-default" onclick="$('#page-loader').show();document.getElementById('editModel').submit()">Save</button>
+                            <button type="button" class="btn btn-link" onclick="javascript:location='/model/list?Id=<%= data.projectId %>&success=0';">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+        </div>
+</section>
+</body>
+</html>

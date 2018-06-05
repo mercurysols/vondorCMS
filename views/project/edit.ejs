@@ -1,0 +1,205 @@
+
+<html>
+<head>
+    <% include ../essentials.ejs %>
+</head>
+<body>
+<div id="page-loader">
+    <div class="preloader preloader--xl preloader--light"> <svg viewBox="25 25 50 50">
+            <circle cx="50" cy="50" r="20" />
+        </svg> </div>
+</div>
+
+
+
+<!-- Header -->
+<% include ../header.ejs %>
+<section id="main">
+    <% include ../sidebar.ejs %>
+
+    <section id="content">
+
+        <div class="content__header">
+
+
+            <h2><a href="/dashboard">Home</a>
+
+                <i class="zmdi zmdi-chevron-right"></i> <a href="/Project/List">Projects</a>
+                <i class="zmdi zmdi-chevron-right"></i> <A href="#"><%= data.projectName%></A>
+            </h2>
+
+        </div>
+
+
+    </section>
+    <div class="card">
+        <div class="card__header">
+            <h2>Project Information <small>Use the form below to edit the information associated with a specific project.</small></h2>
+
+            <button class="btn btn-default btn--icon pull-right" onclick="javascript:location='/Model/List?Id=<%= data.projectId%>&success=0'"><i class="zmdi zmdi-view-quilt"></i></button>&nbsp;&nbsp;
+            <button class="btn btn-default btn--icon pull-right" onclick="javascript:location='/Project/Photo/<%= data.projectId%>'"><i class="zmdi zmdi-image-alt"></i></button>
+
+
+        </div>
+        <form method="Post" id="editProject" action="/project/edit" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="projectId" value="<%= data.projectId%>">
+            <div class="card__body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            <label>Project Name</label>
+                            <input type="text" class="form-control input-mask" name="projectName" value="<%= data.projectName  %>" placeholder="eg: Icona">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Digital Property</label>
+                            <select class="select2" name="projectStatus1">
+                                <option >Vondos.com</option>
+                                <option >TheCondoBrokers.com</option>
+
+                            </select>
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Developer</label>
+                            <input type="text" class="form-control input-mask" name="projectDeveloper" value="<%= data.projectDeveloper  %>" placeholder="eg: Gupta Group">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Sales Status</label>
+                            <select class="select2" name="projectStatus">
+                                <% if(data.projectStatus==1){%>
+                                <option value="1" selected>Draft</option>
+                                <option value="2">Registration</option>
+                                <option value="3">Now Selling</option>
+                                <option value="4">Sold Out</option>
+                                <%}else if(data.projectStatus==2){%>
+                                <option value="1" >Draft</option>
+                                <option value="2" selected>Registration</option>
+                                <option value="3">Now Selling</option>
+                                <option value="4">Sold Out</option>
+                                <%}else if(data.projectStatus==3){%>
+                                <option value="1" >Draft</option>
+                                <option value="2" >Registration</option>
+                                <option value="3" selected>Now Selling</option>
+                                <option value="4">Sold Out</option>
+                                <%}else if(data.projectStatus==4){%>
+                                <option value="1" >Draft</option>
+                                <option value="2" >Registration</option>
+                                <option value="3" >Now Selling</option>
+                                <option value="4" selected>Sold Out</option>
+                                <%}%>
+
+                            </select>
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Start Price</label>
+                            <input type="text" class="form-control input-mask" name="projectStartPrice" value="<%= data.projectStartPrice  %>" placeholder="eg: $199,000">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Street Number</label>
+                            <input type="text" class="form-control input-mask" name="projectStreetNumber" value="<%= data.projectStreetNumber  %>" placeholder="eg: 150">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Street Name</label>
+                            <input type="text" class="form-control input-mask" name="projectStreetName" value="<%= data.projectStreetName  %>" placeholder="eg: Main St">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" class="form-control input-mask" name="projectCity" value="<%= data.projectCity  %>" placeholder="eg: Vaughan">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Main Intersection</label>
+                            <input type="text" class="form-control input-mask" name="projectMainIntersection" value="<%= data.projectMainIntersection  %>" placeholder="eg: Yonge/Steeles">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Latitude</label>
+                            <input type="text" class="form-control input-mask" name="projectLatitude" value="<%= data.projectLatitude  %>" placeholder="eg: 74.66555">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Longitude</label>
+                            <input type="text" class="form-control input-mask" name="projectLongitude" value="<%= data.projectLongitude  %>" placeholder="eg: -76.4454">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Total Buildings</label>
+                            <input type="text" class="form-control input-mask" name="projectTotalBuildings" value="<%= data.projectTotalBuildings  %>" placeholder="eg: 5">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Total Stories</label>
+                            <input type="text" class="form-control input-mask" name="projectTotalStories" value="<%= data.projectTotalStories  %>" placeholder="eg: 50">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3 m-b-20">
+                        <div class="form-group">
+                            <label>Total Units</label>
+                            <input type="text" class="form-control input-mask" name="projectTotalUnits" value="<%= data.projectTotalUnits  %>" placeholder="eg: 700">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Smallest Unit (Sqft)</label>
+                            <input type="text" class="form-control input-mask" name="projectSmallestUnit" value="<%= data.projectSmallestUnit  %>" placeholder="eg: 500">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Largest Unit (Sqft)</label>
+                            <input type="text" class="form-control input-mask" name="projectLargestUnit" value="<%= data.projectLargestUnit  %>" placeholder="eg: 1500">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Avg. Price/SqFt</label>
+                            <input type="text" class="form-control input-mask" name="projectAveragePrice" value="<%= data.projectAveragePrice  %>" placeholder="eg: $545.00">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Est. Completion</label>
+                            <input type="text" class="form-control input-mask" name="projectEstimatedCompletion" value="<%= data.projectEstimatedCompletion  %>" placeholder="eg: Jan 2018">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="card__body">
+                        <p>Description</p>
+                        <div class="form-group">
+                            <textarea class="form-control" name="projectDescription" placeholder="Enter a description of the project here..."><%= data.projectDescription  %></textarea>
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+
+                    <input type="hidden" value="<%= data.projectId  %>" name="editId">
+
+                    <div class="card__footer">
+                        <button class="btn btn-default" onclick="$('#page-loader').show();document.getElementById('editProject').submit()">Save</button>
+                        <button type="button" class="btn btn-link" onclick="javascript:location='/project/list/';">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+    </form>
+    </div>
+
+
+</section>
+</body>
+</html>

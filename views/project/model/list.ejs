@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../../essentials.ejs %>
+</head>
+<body>
+<div id="page-loader">
+    <div class="preloader preloader--xl preloader--light"> <svg viewBox="25 25 50 50">
+            <circle cx="50" cy="50" r="20" />
+        </svg> </div>
+</div>
+
+
+
+<!-- Header -->
+<% include ../../header.ejs %>
+<section id="main">
+    <% include ../../sidebar.ejs %>
+
+    <section id="content">
+
+        <div class="content__header">
+
+            <h2><A href="/dashboard">Home</A>
+
+
+                <i class="zmdi zmdi-chevron-right"></i> <A href="/Project/List">Projects</A>
+
+                <i class="zmdi zmdi-chevron-right"></i> <A href="/project/edit/<%=  project.projectId %>"><%=project.projectName%></A>
+                <i class="zmdi zmdi-chevron-right"></i> <A href="#">Models</A>
+            </h2>
+
+        </div>
+
+
+        <!--start models-->
+        <div class="card">
+            <div class="card__header">
+                <h2>Models <small>You may add a new model or edit an existing model below.</small></h2>
+                <button class="btn btn-default btn--icon pull-right" onclick="javascript:location='/model/addmodel/<%=project.projectId%>';"><i class="zmdi zmdi-plus"></i></button>
+            </div>
+            <input type="hidden" id="success" value="<%= success %>">
+            <div class="card__body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Model Name</th>
+                            <th>Project Name</th>
+                            <th>Size Sq.Ft.</th>
+                            <th>Beds</th>
+                            <th>Baths</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for(var i=0;i<data.length;i++){ %>
+                        <tr>
+                            <td><%= data[i].modelName %></td>
+                            <td><%= project.projectName %></td>
+                            <td><%= data[i].modelSqFt %></td>
+                            <td><%= data[i].modelBeds %></td>
+                            <td><%= data[i].modelBaths %></td>
+                            <td><%= data[i].modelPrice %></td>
+                            <td><button class="btn btn--light" onclick="javascript:location='/model/edit/<%= data[i].modelId %>';"><i class="zmdi zmdi-edit"></i></button>
+                                &nbsp;
+                                <button class="btn btn--light"  onclick="javascript:location='/floorplan/photo/<%= data[i].modelId %>';"><i class="zmdi zmdi-copy"></i></button>
+                                &nbsp;
+                                <button class="btn btn--light"  onclick="deleteModel(<%= data[i].modelId %>,<%= project.projectId %>)"> <i class="zmdi zmdi-delete"></i></button>
+
+                            </td>
+                        </tr>
+                        <%} %>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+        <!--end models-->
+
+    </section>
+
+
+
+</section>
+<script>
+
+    $( document ).ready(function() {
+        if($("#success").val()=="1"){
+            $.notify({
+                message: 'Settings saved successfully.'
+            },{
+                type: 'success'
+            });
+        }
+
+    });
+
+    function deleteModel(modelId,projectId){
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to undo this delete!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!"
+        }).then(function(){
+            location='/model/delete?modelId='+modelId+'&projectId='+projectId;
+        });
+    }
+</script>
+
+</body>
+</html>

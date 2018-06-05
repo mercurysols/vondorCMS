@@ -1,0 +1,169 @@
+
+<html>
+<head>
+    <% include ../essentials.ejs %>
+</head>
+<body>
+<div id="page-loader">
+    <div class="preloader preloader--xl preloader--light"> <svg viewBox="25 25 50 50">
+            <circle cx="50" cy="50" r="20" />
+        </svg> </div>
+</div>
+
+
+
+<!-- Header -->
+<% include ../header.ejs %>
+<section id="main">
+    <% include ../sidebar.ejs %>
+
+    <section id="content">
+        <div class="content__header">
+            <h2><a href="/dashboard">Home</a>
+                <i class="zmdi zmdi-chevron-right"></i> <a href="/Project/List">Projects</a>
+            </h2>
+        </div>
+    </section>
+    <div class="card">
+        <div class="card__header">
+            <h2>Project Information <small>Use the form below to edit the information associated with a specific project.</small></h2>
+
+        </div>
+        <form method="Post" id="editProject" action="/project/addproject" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="projectId" value="">
+            <div class="card__body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            <label>Project Name</label>
+                            <input type="text" class="form-control input-mask" name="projectName" value="" placeholder="eg: Icona">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Digital Property</label>
+                            <select class="select2" name="projectStatus1">
+                                <option >Vondos.com</option>
+                                <option >TheCondoBrokers.com</option>
+
+                            </select>
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Developer</label>
+                            <input type="text" class="form-control input-mask" name="projectDeveloper" value="" placeholder="eg: Gupta Group">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Sales Status</label>
+                            <select class="select2" name="projectStatus">
+                                <option value="1" >Draft</option>
+                                <option value="2" >Registration</option>
+                                <option value="3">Now Selling</option>
+                                <option value="4">Sold Out</option>
+                            </select>
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Start Price</label>
+                            <input type="text" class="form-control input-mask" name="projectStartPrice" value="" placeholder="eg: $199,000">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Street Number</label>
+                            <input type="text" class="form-control input-mask" name="projectStreetNumber" value="" placeholder="eg: 150">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Street Name</label>
+                            <input type="text" class="form-control input-mask" name="projectStreetName" value="" placeholder="eg: Main St">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" class="form-control input-mask" name="projectCity" value="" placeholder="eg: Vaughan">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Main Intersection</label>
+                            <input type="text" class="form-control input-mask" name="projectMainIntersection" value="" placeholder="eg: Yonge/Steeles">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Latitude</label>
+                            <input type="text" class="form-control input-mask" name="projectLatitude" value="" placeholder="eg: 74.66555">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Longitude</label>
+                            <input type="text" class="form-control input-mask" name="projectLongitude" value="" placeholder="eg: -76.4454">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Total Buildings</label>
+                            <input type="text" class="form-control input-mask" name="projectTotalBuildings" value="" placeholder="eg: 5">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Total Stories</label>
+                            <input type="text" class="form-control input-mask" name="projectTotalStories" value="" placeholder="eg: 50">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3 m-b-20">
+                        <div class="form-group">
+                            <label>Total Units</label>
+                            <input type="text" class="form-control input-mask" name="projectTotalUnits" value="" placeholder="eg: 700">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Smallest Unit (Sqft)</label>
+                            <input type="text" class="form-control input-mask" name="projectSmallestUnit" value="" placeholder="eg: 500">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Largest Unit (Sqft)</label>
+                            <input type="text" class="form-control input-mask" name="projectLargestUnit" value="" placeholder="eg: 1500">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Avg. Price/SqFt</label>
+                            <input type="text" class="form-control input-mask" name="projectAveragePrice" value="" placeholder="eg: $545.00">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Est. Completion</label>
+                            <input type="text" class="form-control input-mask" name="projectEstimatedCompletion" value="" placeholder="eg: Jan 2018">
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="card__body">
+                        <p>Description</p>
+                        <div class="form-group">
+                            <textarea class="form-control" name="projectDescription" placeholder="Enter a description of the project here..."></textarea>
+                            <i class="form-group__bar"></i> </div>
+                    </div>
+                    <div class="card__footer">
+                        <button class="btn btn-default" onclick="$('#page-loader').show();document.getElementById('editProject').submit()">Save</button>
+                        <button type="button" class="btn btn-link" onclick="javascript:location='/Project/List/';">Cancel</button>
+                    </div>
+                </div>
+            </div>
+    </form>
+    </div>
+</section>
+</body>
+</html>
