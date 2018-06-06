@@ -6,6 +6,11 @@
   "scripts": {
     "start": "nodemon app"
   },
+  "proxy": {
+    "*": {
+      "target": "https://api-5514.herokuapp.com"
+    }
+  },
   "author": "mercury_sols",
   "license": "ISC",
   "dependencies": {
