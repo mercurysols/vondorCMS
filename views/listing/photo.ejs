@@ -70,7 +70,6 @@
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a> <span class="btn btn-default btn-file"> <span class="fileinput-new">Select image</span> <span class="fileinput-exists">Change</span>
         <input type="file" name="file">
         </span> </div>
-                                <p><em>Photos must be 600w x 600h or 600w x 1200h.</em></p>
                             </div>
 
                             <div class="col-md-3">
@@ -90,21 +89,6 @@
         var url = window.location.pathname;
         var url1 = document.URL;
         var listId = url1.substring(url1.lastIndexOf('/') + 1);
-        if(listId.indexOf("?")){
-            var arr=listId.split('?');
-            listId=arr[0];
-            var errId=arr[1].split('=');
-            if(errId[1]==1) {
-                swal({
-                    title: 'Image Not Accepted',
-                    text: "Images have to be either 600w x 600h (px) or 600w x 1200h (px) and must be .JPG format.",
-                    type: 'warning',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'ok'
-                })
-            }
-        }
-
         function deletePicture(photoId){
             swal({
                 title: "Are you sure?",
@@ -117,7 +101,6 @@
                 location='/listing/delete?photoId='+photoId+'&listId='+listId;
             });
         }
-
     </script>
 
     </body>

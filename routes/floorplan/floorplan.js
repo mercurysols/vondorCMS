@@ -13,15 +13,15 @@ var multipartMiddleware = multipart();
 
 router.get('/photo/:id?',function (request,response) {
     id=request.params.id;
-    var url=config.server.host+'/vondos/v1/api/photo/photo?model='+id+'&project=0';
+    var url=config.server.host+':'+'/vondos/v1/api/photo/photo?model='+id+'&project=0';
     requestData(url, function (error1, projectResponse, body1) {
         if (!error1 && projectResponse.statusCode == 200) {
             body1=JSON.parse(body1);
-            var url1=config.server.host+'/vondos/v1/api/model/model/'+id;
+            var url1=config.server.host+':'+'/vondos/v1/api/model/model/'+id;
             requestData(url1, function (error2, projectResponse2, body2) {
                 if (!error2 && projectResponse2.statusCode == 200) {
                     if(body2!=""){ body2=JSON.parse(body2);}
-                    var url2=config.server.host+'/vondos/v1/api/project/project/'+body2.projectId;
+                    var url2=config.server.host+':'+'/vondos/v1/api/project/project/'+body2.projectId;
                     requestData(url2, function (error3, projectResponse3, body3) {
                         if (!error3 && projectResponse3.statusCode == 200) {
                             if(body3!=""){body3=JSON.parse(body3);}
@@ -40,8 +40,11 @@ router.post('/photo',multipartMiddleware,function (request,response) {
     var newPathAWS='aws-credientials.json';
     AWS.config.loadFromPath(newPathAWS);
     var file = request.files.file;
+    var projectId=request.body.projectId;
+    var modelId=request.body.modelId;
+    var fileformat=file.name.split('.')[1].toUpperCase();
     sizeOf(file.path, function (err, dimensions) {
-        if((dimensions.width==600&& dimensions.height==600)||(dimensions.width==600&& dimensions.height==1200))
+        if((dimensions.width==600&& dimensions.height==600 && projectId!="" && fileformat=="JPG")||(dimensions.width==600&& dimensions.height==1200 && projectId!="" && fileformat=="JPG")||(dimensions.width==1000&& dimensions.height==1000 && modelId!="" &&fileformat=="JPG"))
         {
             fs.readFile(file.path, function (err, data) {
                 if (err) throw err; // Something went wrong!
@@ -61,7 +64,7 @@ router.post('/photo',multipartMiddleware,function (request,response) {
                         else {console.log('Successfully uploaded data');
                             var urlParams = {Bucket: 'vondos', Key: file.originalFilename};
                             s3bucket.getSignedUrl('getObject', urlParams, function(err, url1){
-                                var url=config.server.host+'/vondos/v1/api/photo/photo/';
+                                var url=config.server.host+':'+'/vondos/v1/api/photo/photo/';
                                 requestData.post(url, {form:{url:url1,projectId:request.body.projectId,photoDescription:request.body.photoDescription,modelId:request.body.modelId}},function (error,msg) {
                                     if (!error && msg.statusCode == 200) {
                                         if(msg.body=="-1") {
@@ -89,11 +92,11 @@ router.post('/photo',multipartMiddleware,function (request,response) {
 
 router.get('/list/:Id?',function (request,response) {
     var id=request.params.Id;
-    var url=config.server.host+'/vondos/v1/api/model/projectmodels/'+id;
+    var url=config.server.host+':'+'/vondos/v1/api/model/projectmodels/'+id;
     requestData(url, function (error, response1, body) {
         if (!error && response1.statusCode == 200) {
             body=JSON.parse(body);
-            var url=config.server.host+'/vondos/v1/api/project/project/'+id;
+            var url=config.server.host+':'+'/vondos/v1/api/project/project/'+id;
             requestData(url, function (error1, projectResponse, body1) {
                 if (!error1 && projectResponse.statusCode == 200) {
                     body1=JSON.parse(body1);
@@ -107,7 +110,7 @@ router.get('/list/:Id?',function (request,response) {
 
 
 router.post('/add',function (request,response) {
-    var url=config.server.host+'/vondos/v1/api/model/model/';
+    var url=config.server.host+':'+'/vondos/v1/api/model/model/';
     requestData.post(url, {form:{data:request.body}},function (error,msg) {
         if (!error && msg.statusCode == 200) {
             if(msg.body=="-1") {
@@ -120,11 +123,11 @@ router.post('/add',function (request,response) {
 
 router.get('/edit/:id?',function (request,response) {
     var id=request.params.id;
-    var url=config.server.host+'/vondos/v1/api/model/model/'+id;
+    var url=config.server.host+':'+'/vondos/v1/api/model/model/'+id;
     requestData(url, function (error, response1, body) {
         if (!error && response1.statusCode == 200) {
             body=JSON.parse(body);
-            var url=config.server.host+'/vondos/v1/api/project/project/';
+            var url=config.server.host+':'+'/vondos/v1/api/project/project/';
             requestData(url, function (error1, projectResponse, body1) {
                 if (!error1 && projectResponse.statusCode == 200) {
                     body1=JSON.parse(body1);
@@ -139,7 +142,7 @@ router.get('/edit/:id?',function (request,response) {
 
 router.get('/delete/:id?',function (request,response) {
     var id=request.query.photoId;
-    var url=config.server.host+'/vondos/v1/api/photo/delete/'+id;
+    var url=config.server.host+':'+'/vondos/v1/api/photo/delete/'+id;
     requestData(url, function (error, response1, body) {
         if (!error && response1.statusCode == 200) {
             if(request.query.prosection=="success") {
@@ -151,7 +154,7 @@ router.get('/delete/:id?',function (request,response) {
 
 
 router.post('/edit',function (request,response) {
-    var url=config.server.host+'/vondos/v1/api/model/update/';
+    var url=config.server.host+':'+'/vondos/v1/api/model/update/';
 
     requestData.post(url, {form:{data:request.body}},function (error,msg) {
         if (!error && msg.statusCode == 200) {

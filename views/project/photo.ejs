@@ -51,7 +51,11 @@
 
             <div class="card">
                 <div class="card__header">
+                    <%if(modelId==0){%>
                     <h2>Project Photos <small>You may add or edit photos for this listing below.</small></h2>
+                    <%}else{%>
+                    <h2>Model Floorplans <small>You may add or edit floorplans for this model below.</small></h2>
+                    <%}%>
                 </div>
                 <div class="card__body">
                     <div class="row">
@@ -80,7 +84,13 @@
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a> <span class="btn btn-default btn-file"> <span class="fileinput-new">Select image</span> <span class="fileinput-exists">Change</span>
         <input type="file" name="file" id="file">
         </span> </div>
+                                <%if(modelId==0){%>
                                 <p><em>Photos must be 600w x 600h or 600w x 1200h.</em></p>
+                                <%}else{%>
+                                <p><em>Floorplans may be a maximum of 1000px (w) and 1000px (h).</em></p>
+
+                                <%}%>
+
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -104,14 +114,20 @@
     <script language="javascript">
         var url = document.URL;
         var proid = url.substring(url.lastIndexOf('/') + 1);
-        if(proid.indexOf("?")){
+        var text;
+        if(url.indexOf("floorplan")!=-1){
+            text="Images have to be either 1000w x 1000h (px) and must be .JPG format.";
+        }else {
+            text="Images have to be either 600w x 600h (px) or 600w x 1200h (px) and must be .JPG format.";
+        }
+        if(proid.indexOf("?")!=-1){
             var arr=proid.split('?');
             proid=arr[0];
             var errId=arr[1].split('=');
             if(errId[1]==1) {
                 swal({
                     title: 'Image Not Accepted',
-                    text: "Images have to be either 600w x 600h (px) or 600w x 1200h (px) and must be .JPG format.",
+                    text: text,
                     type: 'warning',
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'ok'
