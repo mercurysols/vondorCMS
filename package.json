@@ -8,7 +8,7 @@
   },
   "proxy": {
     "/*": {
-      "target": "http://api-5514.herokuapp.com"
+      "target": "https://api-3322.herokuapp.com"
     }
   },
   "author": "mercury_sols",

@@ -1,12 +1,11 @@
 module.exports = {
 
-
     liveDb : {
         host: 'us-cdbr-iron-east-04.cleardb.net',
-        user: 'b1466f0b4aad25',
-        pass:'0bdc5aef',
+        user: 'bdb2760963848d',
+        pass:'cf5e5d7a',
         port:3306,
-        database:'heroku_22fdd806fc12bbe',
+        database:'heroku_bfc93574a934697',
         dialect:'mysql',
         pool:{
             min:0,
@@ -16,7 +15,7 @@ module.exports = {
     },
 
     server : {
-        host:'https://api-5514.herokuapp.com'
+        host:'https://api-3322.herokuapp.com'
     },
     dirPath : {
         model:'../models',
