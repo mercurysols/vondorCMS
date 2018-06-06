@@ -2,11 +2,11 @@ module.exports = {
 
 
     liveDb : {
-        host: 'localhost',
-        user: 'root',
-        pass:'',
+        host: 'us-cdbr-iron-east-04.cleardb.net',
+        user: 'b1466f0b4aad25',
+        pass:'0bdc5aef',
         port:3306,
-        database:'vondos',
+        database:'heroku_22fdd806fc12bbe',
         dialect:'mysql',
         pool:{
             min:0,
