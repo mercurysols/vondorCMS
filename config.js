@@ -16,8 +16,7 @@ module.exports = {
     },
 
     server : {
-        host:'https://api-5514.herokuapp.com/',
-        port : 37397
+        host:'https://api-5514.herokuapp.com'
     },
     dirPath : {
         model:'../models',
