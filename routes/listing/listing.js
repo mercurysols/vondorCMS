@@ -13,15 +13,15 @@ var multipartMiddleware = multipart();
 
 router.get('/addListing',function (request,response) {
     // listing classes
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listingselectdata/listingsclasses';
+    var url=config.server.host+'/vondos/v1/api/listingselectdata/listingsclasses';
     requestData(url, function (error2, response2, body2) {
         if (!error2 && response2.statusCode == 200) {
             body2=JSON.parse(body2);
-            var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listingselectdata/properttypes';
+            var url=config.server.host+'/vondos/v1/api/listingselectdata/properttypes';
             requestData(url, function (error3, response3, body3) {
                 if (!error3 && response3.statusCode == 200) {
                     body3=JSON.parse(body3);
-                    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listingselectdata/basementtypes';
+                    var url=config.server.host+'/vondos/v1/api/listingselectdata/basementtypes';
                     requestData(url, function (error4, response4, body4) {
                         if (!error4 && response4.statusCode == 200) {
                             body4=JSON.parse(body4);
@@ -53,7 +53,7 @@ router.post('/addListing',function (request,response) {
     datesCustom.push(body.open_house2)
     request.body.newDates=datesCustom;
 
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listing/listing/';
+    var url=config.server.host+'/vondos/v1/api/listing/listing/';
     requestData.post(url, {form:{data:request.body}},function (error,msg) {
         if (!error && msg.statusCode == 200) {
             if(msg.body=="-1") {
@@ -65,7 +65,7 @@ router.post('/addListing',function (request,response) {
 
 router.get('/edit/:id?',function (request,response) {
     var id=request.params.id;
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listing/listing/'+id;
+    var url=config.server.host+'/vondos/v1/api/listing/listing/'+id;
     requestData(url, function (error, response1, body) {
         if (!error && response1.statusCode == 200) {
             body=JSON.parse(body);
@@ -75,17 +75,17 @@ router.get('/edit/:id?',function (request,response) {
             body.open_house2=convertToDate(body.open_house2);
 
            // listing classes
-            var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listingselectdata/listingsclasses';
+            var url=config.server.host+'/vondos/v1/api/listingselectdata/listingsclasses';
             requestData(url, function (error2, response2, body2) {
                 if (!error2 && response2.statusCode == 200) {
                     body2=JSON.parse(body2);
                    // basement type
-                    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listingselectdata/properttypes';
+                    var url=config.server.host+'/vondos/v1/api/listingselectdata/properttypes';
                     requestData(url, function (error3, response3, body3) {
                         if (!error3 && response3.statusCode == 200) {
                             body3=JSON.parse(body3);
                             // Propert type
-                            var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listingselectdata/basementtypes';
+                            var url=config.server.host+'/vondos/v1/api/listingselectdata/basementtypes';
                             requestData(url, function (error4, response4, body4) {
                                 if (!error4 && response4.statusCode == 200) {
                                     body4=JSON.parse(body4);
@@ -104,11 +104,11 @@ router.get('/edit/:id?',function (request,response) {
 
 router.get('/photo/:id?',function (request,response) {
     id=request.params.id;
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/picture/picture/'+id;
+    var url=config.server.host+'/vondos/v1/api/picture/picture/'+id;
     requestData(url, function (error1, projectResponse, body1) {
         if (!error1 && projectResponse.statusCode == 200) {
             body1=JSON.parse(body1);
-            var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listing/listing/'+id;
+            var url=config.server.host+'/vondos/v1/api/listing/listing/'+id;
             requestData(url, function (error2, projectResponse2, body2) {
                 if (!error2 && projectResponse2.statusCode == 200) {
                     if(body2!="") {body2=JSON.parse(body2);}
@@ -147,7 +147,7 @@ router.post('/photo',multipartMiddleware,function (request,response) {
                         else{console.log('Successfully uploaded data');
                             var urlParams = {Bucket: 'vondos', Key: file.originalFilename};
                             s3bucket.getSignedUrl('getObject', urlParams, function(err, url1){
-                                var url=config.server.host+':'+config.server.port+'/vondos/v1/api/picture/picture/';
+                                var url=config.server.host+'/vondos/v1/api/picture/picture/';
                                 requestData.post(url, {form:{url:url1,listingId:request.body.listingId}},function (error,msg) {
                                     if (!error && msg.statusCode == 200) {
                                         if(msg.body=="-1") {
@@ -168,7 +168,7 @@ router.post('/photo',multipartMiddleware,function (request,response) {
 router.get('/delete/:id?',function (request,response) {
     var listId=request.query.listId;
     var id=request.query.photoId;
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/picture/delete/'+id;
+    var url=config.server.host+'/vondos/v1/api/picture/delete/'+id;
     requestData(url, function (error, response1, body) {
         if (!error && response1.statusCode == 200) {
             response.redirect('/listing/photo/'+listId);}
@@ -179,7 +179,7 @@ router.get('/delete/:id?',function (request,response) {
 
 router.get('/deletelisting/:id?',function (request,response) {
     var id=request.params.id;
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listing/delete/'+id;
+    var url=config.server.host+'/vondos/v1/api/listing/delete/'+id;
     requestData(url, function (error, response1, body) {
         if(!error && response1.statusCode == 200) {
             response.redirect('/listing/list/1');}
@@ -189,7 +189,7 @@ router.get('/deletelisting/:id?',function (request,response) {
 
 
 router.post('/edit',function (request,response) {
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listing/update/';
+    var url=config.server.host+'/vondos/v1/api/listing/update/';
     requestData.post(url, {form:{data:request.body}},function (error,msg) {
         if (!error && msg.statusCode == 200) {
             if(msg.body=="-1"){
@@ -202,7 +202,7 @@ router.post('/edit',function (request,response) {
 
 router.get('/list/:id?',function (request,response) {
     var id=request.params.id;
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/listing/listing/';
+    var url=config.server.host+'/vondos/v1/api/listing/listing/';
     requestData(url, function (error, response1, body) {
         if(!error && response1.statusCode == 200) {
             body=JSON.parse(body);

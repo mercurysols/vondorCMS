@@ -14,7 +14,7 @@ router.get('/addproject',function (request,response) {
 
 
 router.post('/addproject',function (request,response) {
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/project/project/';
+    var url=config.server.host+'/vondos/v1/api/project/project/';
     requestData.post(url, {form:{data:request.body}},function (error,msg) {
         if (!error && msg.statusCode == 200) {
             if(msg.body=="-1") {
@@ -27,7 +27,7 @@ router.post('/addproject',function (request,response) {
 
 router.get('/edit/:id?',function (request,response) {
 var id=request.params.id;
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/project/project/'+id;
+    var url=config.server.host+'/vondos/v1/api/project/project/'+id;
     requestData(url, function (error, response1, body) {
         if (!error && response1.statusCode == 200) {
             body=JSON.parse(body);
@@ -40,11 +40,11 @@ var id=request.params.id;
 
 router.get('/photo/:id?',function (request,response) {
     id=request.params.id;
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/photo/photo?model='+0+'&project='+id;
+    var url=config.server.host+'/vondos/v1/api/photo/photo?model='+0+'&project='+id;
     requestData(url, function (error1, projectResponse, body1) {
         if (!error1 && projectResponse.statusCode == 200) {
             body1=JSON.parse(body1);
-            var url1=config.server.host+':'+config.server.port+'/vondos/v1/api/project/project/'+id;
+            var url1=config.server.host+'/vondos/v1/api/project/project/'+id;
             requestData(url1, function (error2, projectResponse2, body2) {
                 if (!error2 && projectResponse.statusCode == 200) {
                     body2=JSON.parse(body2);
@@ -59,7 +59,7 @@ router.get('/photo/:id?',function (request,response) {
 
 router.get('/delete/:id?',function (request,response) {
     var id=request.params.id;
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/project/delete/'+id;
+    var url=config.server.host+'/vondos/v1/api/project/delete/'+id;
     requestData(url, function (error, response1, body) {
         if (!error && response1.statusCode == 200) {
             response.redirect('/project/list/1');}
@@ -69,7 +69,7 @@ router.get('/delete/:id?',function (request,response) {
 
 
 router.post('/edit',function (request,response) {
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/project/update/';
+    var url=config.server.host+'/vondos/v1/api/project/update/';
     requestData.post(url, {form:{data:request.body}},function (error,msg) {
         if (!error && msg.statusCode == 200) {
             if(msg.body=="-1") {response.render('error/Error');}
@@ -81,7 +81,7 @@ router.post('/edit',function (request,response) {
 
 router.get('/list/:id?',function (request,response) {
     var id=request.params.id;
-    var url=config.server.host+':'+config.server.port+'/vondos/v1/api/project/project/';
+    var url=config.server.host+'/vondos/v1/api/project/project/';
     requestData(url, function (error, response1, body) {
         if (!error && response1.statusCode == 200) {
             body=JSON.parse(body);
