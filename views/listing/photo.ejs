@@ -26,7 +26,7 @@
 
                 <h2><A href="home.htm">Home</A>
                     <i class="zmdi zmdi-chevron-right"></i> <A href="/listing/list">Listings</A>
-                    <i class="zmdi zmdi-chevron-right"></i> <A href="/Listing/Edit/<%= listingObject.listing_id%>"><%= listingObject.title %></A>
+                    <i class="zmdi zmdi-chevron-right"></i> <A href="/listing/edit/<%= listingObject.listing_id%>"><%= listingObject.title %></A>
                     <i class="zmdi zmdi-chevron-right"></i> <A href="#">Photos</A>
                     </h2>
 
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <form id="addPicture" action="/Listing/Photo/" method = "Post" enctype="multipart/form-data">
+                        <form id="addPicture" action="/listing/photo/" method = "Post" enctype="multipart/form-data">
 
                             <input type="hidden" name="listingId" value="<%= listingObject.listing_id %>">
 
