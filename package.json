@@ -7,7 +7,7 @@
     "start": "nodemon app"
   },
   "proxy": {
-    "*": {
+    "/*": {
       "target": "https://api-5514.herokuapp.com"
     }
   },
