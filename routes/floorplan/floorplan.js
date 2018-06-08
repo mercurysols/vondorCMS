@@ -70,7 +70,7 @@ router.post('/photo',multipartMiddleware,function (request,response) {
                                         if(msg.body=="-1") {
                                             response.render('error/Error');}
                                         else {if(request.body.modelId!=0) {
-                                            response.redirect('/floorplan/Photo/'+request.body.modelId+'?errorId=0');}
+                                            response.redirect('/floorplan/photo/'+request.body.modelId+'?errorId=0');}
                                         else{response.redirect('/project/photo/'+request.body.projectId+'?errorId=0');}}}
                                     else {response.render('error/Error');}
                                 });
@@ -81,7 +81,7 @@ router.post('/photo',multipartMiddleware,function (request,response) {
             });
         }else{
             if(request.body.modelId!=0) {
-                response.redirect('/floorplan/Photo/'+request.body.modelId+'?errorId=1');}
+                response.redirect('/floorplan/photo/'+request.body.modelId+'?errorId=1');}
             else{response.redirect('/project/photo/'+request.body.projectId+'?errorId=1');}
 
         }

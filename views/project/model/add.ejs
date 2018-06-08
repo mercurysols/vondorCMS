@@ -45,7 +45,7 @@
                 <h2>Model Information <small>Use the form below to edit the information associated with a specific model.</small></h2>
 
             </div>
-            <form method="Post" id="editModel" action="/Model/Add">
+            <form method="Post" id="editModel" action="/model/add">
 
                 <input type="hidden" name="modelId" value="">
                 <div class="card__body">
@@ -53,7 +53,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Model Name</label>
-                                <input type="text" class="form-control input-mask" name="modelName" value="" placeholder="eg: The Pad">
+                                <input type="text" class="form-control input-mask" name="modelName" required placeholder="eg: The Pad">
                                 <i class="form-group__bar"></i> </div>
                         </div>
                         <div class="col-sm-3">

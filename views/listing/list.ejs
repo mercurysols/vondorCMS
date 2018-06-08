@@ -50,7 +50,17 @@
                         <td><%= data[i].list_date %></td>
                         <td><%= data[i].title %></td>
                         <td><%= data[i].mls_id %></td>
-                        <td><%= data[i].list_status %></td>
+
+
+                        <%if(data[i].list_status==1){%>
+                        <td>Sold</td>
+                        <%}else if(data[i].list_status==2){%>
+                        <td>For Lease</td>
+                        <%}else if(data[i].list_status==3){%>
+                        <td>Coming Soon</td>
+                        <%}else if(data[i].list_status==4){%>
+                        <td>Leased</td>
+                        <%}%>
                         <td><button class="btn btn--light" onclick="javascript:location='/listing/edit/<%= data[i].listing_id %>';"><i class="zmdi zmdi-edit"></i></button>
                             &nbsp;
                             <button class="btn btn--light" onclick="javascript:location='/listing/photo/<%= data[i].listing_id %>';"><i class="zmdi zmdi-image-alt"></i></button>

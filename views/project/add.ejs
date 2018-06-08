@@ -20,7 +20,7 @@
     <section id="content">
         <div class="content__header">
             <h2><a href="/dashboard">Home</a>
-                <i class="zmdi zmdi-chevron-right"></i> <a href="/Project/List">Projects</a>
+                <i class="zmdi zmdi-chevron-right"></i> <a href="/project/list">Projects</a>
             </h2>
         </div>
     </section>
@@ -36,7 +36,7 @@
                     <div class="col-sm-9">
                         <div class="form-group">
                             <label>Project Name</label>
-                            <input type="text" class="form-control input-mask" name="projectName" value="" placeholder="eg: Icona">
+                            <input type="text" class="form-control input-mask" name="projectName" required placeholder="eg: Icona">
                             <i class="form-group__bar"></i> </div>
                     </div>
                     <div class="col-sm-3">
@@ -158,7 +158,7 @@
                     </div>
                     <div class="card__footer">
                         <button class="btn btn-default" onclick="$('#page-loader').show();document.getElementById('editProject').submit()">Save</button>
-                        <button type="button" class="btn btn-link" onclick="javascript:location='/Project/List/';">Cancel</button>
+                        <button type="button" class="btn btn-link" onclick="javascript:location='/project/list/';">Cancel</button>
                     </div>
                 </div>
             </div>

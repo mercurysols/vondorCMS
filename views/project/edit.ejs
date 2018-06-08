@@ -24,7 +24,7 @@
 
             <h2><a href="/dashboard">Home</a>
 
-                <i class="zmdi zmdi-chevron-right"></i> <a href="/Project/List">Projects</a>
+                <i class="zmdi zmdi-chevron-right"></i> <a href="/project/list">Projects</a>
                 <i class="zmdi zmdi-chevron-right"></i> <A href="#"><%= data.projectName%></A>
             </h2>
 
@@ -36,8 +36,8 @@
         <div class="card__header">
             <h2>Project Information <small>Use the form below to edit the information associated with a specific project.</small></h2>
 
-            <button class="btn btn-default btn--icon pull-right" onclick="javascript:location='/Model/List?Id=<%= data.projectId%>&success=0'"><i class="zmdi zmdi-view-quilt"></i></button>&nbsp;&nbsp;
-            <button class="btn btn-default btn--icon pull-right" onclick="javascript:location='/Project/Photo/<%= data.projectId%>'"><i class="zmdi zmdi-image-alt"></i></button>
+            <button class="btn btn-default btn--icon pull-right" onclick="javascript:location='/model/list?Id=<%= data.projectId%>&success=0'"><i class="zmdi zmdi-view-quilt"></i></button>&nbsp;&nbsp;
+            <button class="btn btn-default btn--icon pull-right" onclick="javascript:location='/project/photo/<%= data.projectId%>'"><i class="zmdi zmdi-image-alt"></i></button>
 
 
         </div>
@@ -48,7 +48,7 @@
                     <div class="col-sm-9">
                         <div class="form-group">
                             <label>Project Name</label>
-                            <input type="text" class="form-control input-mask" name="projectName" value="<%= data.projectName  %>" placeholder="eg: Icona">
+                            <input type="text" class="form-control input-mask" name="projectName" required value="<%= data.projectName  %>" placeholder="eg: Icona">
                             <i class="form-group__bar"></i> </div>
                     </div>
                     <div class="col-sm-3">

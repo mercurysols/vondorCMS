@@ -25,7 +25,7 @@
             <h2><a href="/dashboard">Home</a>
 
 
-                <i class="zmdi zmdi-chevron-right"></i> <a href="/Project/List">Projects</a></h2>
+                <i class="zmdi zmdi-chevron-right"></i> <a href="/project/list">Projects</a></h2>
 
         </div>
 
@@ -59,7 +59,15 @@
                     <tr>
                         <td><%= data[i].projectName %></td>
                         <td><%= data[i].projectDeveloper %></td>
-                        <td><%= data[i].projectStatus %></td>
+                        <% if(data[i].projectStatus==1){%>
+                        <td>Draft</td>
+                        <%}else if(data[i].projectStatus==2){%>
+                        <td>Registration</td>
+                        <%}else if(data[i].projectStatus==3){%>
+                        <td>Now Selling</td>
+                        <%}else if(data[i].projectStatus==4){%>
+                        <td>Sold Out</td>
+                        <%}%>
                         <td><button class="btn btn--light" onclick="javascript:location='/project/edit/<%= data[i].projectId %>';"><i class="zmdi zmdi-edit"></i></button>
                             &nbsp;
                             <button class="btn btn--light" onclick="javascript:location='/project/photo/<%= data[i].projectId %>';"><i class="zmdi zmdi-image-alt"></i></button>

@@ -25,18 +25,18 @@
             <div class="content__header">
 
                 <h2><A href="home.htm">Home</A>
-                    <i class="zmdi zmdi-chevron-right"></i> <A href="/Project/List">PROJECTS</A>
+                    <i class="zmdi zmdi-chevron-right"></i> <A href="/project/list">PROJECTS</A>
                     <%if(modelId==0){%>
 
-                    <i class="zmdi zmdi-chevron-right"></i> <A href="/Project/Edit/<%=  projectobject.projectId %>"><%= projectobject.projectName%></A>
+                    <i class="zmdi zmdi-chevron-right"></i> <A href="/project/edit/<%=  projectobject.projectId %>"><%= projectobject.projectName%></A>
                     <i class="zmdi zmdi-chevron-right"></i> <A href="#">Photos</A>
 
                     <%}else{%>
-                    <i class="zmdi zmdi-chevron-right"></i> <A href="/Project/Edit/<%=  projectobj.projectId %>"><%= projectobj.projectName%></A>
-                    <i class="zmdi zmdi-chevron-right"></i> <A href="/Model/Model/<%= projectobj.projectId%>">Models</A>
+                    <i class="zmdi zmdi-chevron-right"></i> <A href="/project/edit/<%=  projectobj.projectId %>"><%= projectobj.projectName%></A>
+                    <i class="zmdi zmdi-chevron-right"></i> <A href="/model/model/<%= projectobj.projectId%>">Models</A>
 
 
-                    <i class="zmdi zmdi-chevron-right"></i> <A href="/Model/Edit/<%= modelobject.modelId%>"><%= modelobject.modelName%></A>
+                    <i class="zmdi zmdi-chevron-right"></i> <A href="/model/edit/<%= modelobject.modelId%>"><%= modelobject.modelName%></A>
 
                     <i class="zmdi zmdi-chevron-right"></i> <A href="#">Floorplans</A>
                     <%}%>
