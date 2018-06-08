@@ -122,7 +122,7 @@ router.get('/photo/:id?',function (request,response) {
 
 
 router.post('/photo',multipartMiddleware,function (request,response) {
-    var newPathAWS='aws-credientials.json';
+
     AWS.config.loadFromPath(newPathAWS);
         var file = request.files.file;
     // sizeOf(file.path, function (err, dimensions) {
